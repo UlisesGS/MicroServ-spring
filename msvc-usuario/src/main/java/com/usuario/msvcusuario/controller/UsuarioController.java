@@ -1,6 +1,7 @@
 package com.usuario.msvcusuario.controller;
 
 import com.usuario.msvcusuario.entity.Usuario;
+import com.usuario.msvcusuario.enumeraciones.Role;
 import com.usuario.msvcusuario.service.UsuarioService;
 import jakarta.validation.Valid;
 import org.apache.http.HttpStatus;
@@ -44,8 +45,26 @@ public class UsuarioController {
         if(result.hasErrors()){
             this.validar(result);
         }
+        usuario.setRole(Role.ASESOR);
         return ResponseEntity.status(HttpStatus.SC_CREATED).body(usuarioService.save(usuario));
 
+    }
+    @PutMapping("/{id}")
+    public ResponseEntity<?>update(@Valid @RequestBody Usuario usuario, BindingResult result,@PathVariable Long id ){
+        Optional<Usuario>optionalUsuario = usuarioService.findById(id);
+        Usuario usuarioDb = null;
+        if (optionalUsuario.isPresent()){
+            usuarioDb = optionalUsuario.get();
+            usuarioDb.setApellido(usuario.getApellido());
+            usuarioDb.setNombre(usuario.getNombre());
+            usuarioDb.setPassword(usuario.getPassword());
+            usuarioDb.setEmail(usuario.getEmail());
+            usuarioDb.setCedula(usuario.getCedula());
+            usuarioDb.setProfesion(usuario.getProfesion());
+            usuarioDb.setTelefono(usuario.getTelefono());
+            return ResponseEntity.status(HttpStatus.SC_CREATED).body(usuarioService.save(usuarioDb));
+        }
+        return  ResponseEntity.notFound().build();
     }
 
 }
