@@ -7,11 +7,11 @@
 		<artifactId>msv-crm</artifactId>
 		<version>1.0-SNAPSHOT</version>
 	</parent>
-	<groupId>com.usuario</groupId>
-	<artifactId>msvc-usuario</artifactId>
+	<groupId>com.cliente</groupId>
+	<artifactId>msvc-cliente</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>msvc-usuario</name>
-	<description>microservicio de usuario</description>
+	<name>msvc-cliente</name>
+	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>17</java.version>
 		<spring-cloud.version>2022.0.4</spring-cloud.version>
@@ -86,15 +86,7 @@
 					</excludes>
 				</configuration>
 			</plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>19</source>
-                    <target>19</target>
-                </configuration>
-            </plugin>
-        </plugins>
+		</plugins>
 	</build>
 
 </project>
