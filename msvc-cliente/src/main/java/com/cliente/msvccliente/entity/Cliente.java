@@ -1,5 +1,6 @@
 package com.cliente.msvccliente.entity;
 
+import com.cliente.msvccliente.MsvcUsuario.Usuario;
 import com.cliente.msvccliente.enumeraciones.Etnia;
 import com.cliente.msvccliente.enumeraciones.Genero;
 import com.cliente.msvccliente.enumeraciones.NivelEstudio;
@@ -71,4 +72,5 @@ public class Cliente {
     private Boolean activo;
     private String tipo;
 
+    private Long usuario;
 }
