@@ -46,4 +46,6 @@ public class ClienteServiceImpl implements ClienteService{
     public Optional<Usuario> findByIdUsuario(Long id) {
         return usuarioService.findById(id);
     }
+    
+    
 }
