@@ -98,6 +98,43 @@ public class ClienteController {
         return  ResponseEntity.notFound().build();
     }
 
+    @PutMapping("/convertirEmprendedor/{id}")
+    public ResponseEntity<?> convertirAEmpresario(@PathVariable Long id, @RequestBody Empresario empresario){
+        Emprendedor emprendedor = (Emprendedor) clienteService.findById(id).get();
+        Empresario empresarioDb = new Empresario();
+        empresarioDb.setNombre(emprendedor.getNombre());
+        empresarioDb.setNombre(emprendedor.getNombre());
+        empresarioDb.setApellido(emprendedor.getApellido());
+        empresarioDb.setDni(emprendedor.getDni());
+        empresarioDb.setGenero(emprendedor.getGenero());
+        empresarioDb.setNivelEstudio(emprendedor.getNivelEstudio());
+        empresarioDb.setEtnia(emprendedor.getEtnia());
+        empresarioDb.setVictima(emprendedor.getVictima());
+        empresarioDb.setDiscapacidad(emprendedor.getDiscapacidad());
+        empresarioDb.setDesplazamiento(emprendedor.getDesplazamiento());
+        empresarioDb.setTelefono(emprendedor.getTelefono());
+        empresarioDb.setEmail(emprendedor.getEmail());
+        empresarioDb.setFechaNacimiento(emprendedor.getFechaNacimiento());
+        empresarioDb.setMunicipio(emprendedor.getMunicipio());
+        empresarioDb.setDireccion(emprendedor.getDireccion());
+        empresarioDb.setComentario(emprendedor.getComentario());
+        empresarioDb.setActivo(emprendedor.getActivo());
+        empresarioDb.setFormaContratacion1(empresario.getFormaContratacion1());
+        empresarioDb.setFormaContratacion2(empresario.getFormaContratacion2());
+        empresarioDb.setNombreEmpresa(empresario.getNombreEmpresa());
+        empresarioDb.setFechaAlta(empresario.getFechaAlta());
+        empresarioDb.setTipoEmpresa(empresario.getTipoEmpresa());
+        empresarioDb.setEmpleadoTC(empresario.getEmpleadoMT());
+        empresarioDb.setRegistroMercantil(empresario.getRegistroMercantil());
+        empresarioDb.setNumeroRegistroMercantil(empresario.getNumeroRegistroMercantil());
+        empresarioDb.setCiiu(empresario.getCiiu());
+
+
+        empresarioDb.setEmpleadoMT(empresario.getEmpleadoMT());
+        return ResponseEntity.status(HttpStatus.SC_CREATED).body(clienteService.save(empresarioDb));
+    }
+
+
 
     @PostMapping("/emprendedor")
     public ResponseEntity<?> saveEmprendedor(@Valid @RequestBody Emprendedor emprendedor, BindingResult result){
@@ -119,6 +156,7 @@ public class ClienteController {
 
         return ResponseEntity.status(HttpStatus.SC_CREATED).body(empresarioRepository.save(empresario));
     }
+
 
 
 
