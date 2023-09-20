@@ -1,4 +1,4 @@
-package org.msv-crm;
+package org.msv;
 
 public class Main {
     public static void main(String[] args) {

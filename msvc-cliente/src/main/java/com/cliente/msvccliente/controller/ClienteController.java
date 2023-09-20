@@ -2,8 +2,12 @@ package com.cliente.msvccliente.controller;
 
 import com.cliente.msvccliente.MsvcUsuario.Usuario;
 import com.cliente.msvccliente.entity.Cliente;
+import com.cliente.msvccliente.entity.Emprendedor;
+import com.cliente.msvccliente.repository.EmprendedorRepository;
 import com.cliente.msvccliente.service.ClienteService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.validation.Valid;
+import java.io.IOException;
 import org.apache.hc.core5.http.HttpStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,10 +19,13 @@ import java.util.Map;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("")
 public class ClienteController {
 
     @Autowired
     private ClienteService clienteService;
+    @Autowired 
+    private EmprendedorRepository repoEmpre;
 
     private ResponseEntity<?>validar (BindingResult result){
         Map<String, Object>errores= new HashMap<>();
@@ -48,12 +55,41 @@ public class ClienteController {
         return ResponseEntity.notFound().build();
     }
 
+//    @PostMapping
+//    public ResponseEntity<?> save(@Valid @RequestBody Cliente cliente, BindingResult result){
+//        if (result.hasErrors()){
+//            this.validar((result));
+//        }
+//        System.out.println(cliente);
+//        
+//        
+//        
+//        
+//        return ResponseEntity.status(HttpStatus.SC_CREATED).body(clienteService.save(cliente));
+//    }
     @PostMapping
-    public ResponseEntity<?> save(@Valid @RequestBody Cliente cliente, BindingResult result){
-        if (result.hasErrors()){
-            this.validar((result));
+    public ResponseEntity<?> save(@Valid @RequestBody String json, BindingResult result){
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        
+        
+
+        try {
+
+            Emprendedor emprendedor = objectMapper.readValue(json, Emprendedor.class);
+            System.out.println(json);
+            System.out.println(emprendedor);
+            System.out.println(emprendedor.getClass().toString());
+            return ResponseEntity.status(HttpStatus.SC_CREATED).body(repoEmpre.save(emprendedor));
+
+        } catch (IOException e) {
+            return ResponseEntity.badRequest().body("Error en el formato JSON");
         }
-        return ResponseEntity.status(HttpStatus.SC_CREATED).body(clienteService.save(cliente));
+
+//        if (result.hasErrors()){
+//            this.validar((result));
+//        }
+        
     }
 
     @PutMapping("/{id}")
@@ -67,7 +103,6 @@ public class ClienteController {
             Optional<Usuario>optionalUsuario = clienteService.findByIdUsuario(clienteDb.getUsuario());
 
             if (optionalUsuario.isPresent()){
-
                 clienteDb.setNombre(cliente.getNombre());
                 clienteDb.setApellido(cliente.getApellido());
                 clienteDb.setDni(cliente.getDni());
@@ -84,6 +119,9 @@ public class ClienteController {
                 clienteDb.setDireccion(cliente.getDireccion());
                 clienteDb.setComentario(cliente.getComentario());
                 clienteDb.setActivo(cliente.getActivo());
+                
+                
+                
                 return ResponseEntity.status(org.apache.http.HttpStatus.SC_CREATED).body(clienteService.save(clienteDb));
             }
             return  ResponseEntity.notFound().build();
