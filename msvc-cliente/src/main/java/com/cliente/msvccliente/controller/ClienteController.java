@@ -2,7 +2,9 @@ package com.cliente.msvccliente.controller;
 
 import com.cliente.msvccliente.MsvcUsuario.Usuario;
 import com.cliente.msvccliente.entity.Cliente;
+import com.cliente.msvccliente.entity.Emprendedor;
 import com.cliente.msvccliente.service.ClienteService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.validation.Valid;
 import org.apache.hc.core5.http.HttpStatus;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -49,11 +52,27 @@ public class ClienteController {
     }
 
     @PostMapping
-    public ResponseEntity<?> save(@Valid @RequestBody Cliente cliente, BindingResult result){
-        if (result.hasErrors()){
+    public ResponseEntity<?> save(@Valid @RequestBody String json, BindingResult result){
+
+        ObjectMapper objectMapper = new ObjectMapper();
+
+
+        try {
+
+            Emprendedor emprendedor = objectMapper.readValue(json, Emprendedor.class);
+
+            System.out.println(emprendedor);
+
+            return ResponseEntity.ok("Solicitud POST procesada con éxito");
+
+        } catch (IOException e) {
+            return ResponseEntity.badRequest().body("Error en el formato JSON");
+        }
+
+        /*if (result.hasErrors()){
             this.validar((result));
         }
-        return ResponseEntity.status(HttpStatus.SC_CREATED).body(clienteService.save(cliente));
+        return ResponseEntity.status(HttpStatus.SC_CREATED).body(clienteService.save());*/
     }
 
     @PutMapping("/{id}")
