@@ -102,36 +102,80 @@ public class ClienteController {
     public ResponseEntity<?> convertirAEmpresario(@PathVariable Long id, @RequestBody Empresario empresario){
         Emprendedor emprendedor = (Emprendedor) clienteService.findById(id).get();
         Empresario empresarioDb = new Empresario();
-        empresarioDb.setNombre(emprendedor.getNombre());
-        empresarioDb.setNombre(emprendedor.getNombre());
-        empresarioDb.setApellido(emprendedor.getApellido());
-        empresarioDb.setDni(emprendedor.getDni());
-        empresarioDb.setGenero(emprendedor.getGenero());
-        empresarioDb.setNivelEstudio(emprendedor.getNivelEstudio());
-        empresarioDb.setEtnia(emprendedor.getEtnia());
-        empresarioDb.setVictima(emprendedor.getVictima());
-        empresarioDb.setDiscapacidad(emprendedor.getDiscapacidad());
-        empresarioDb.setDesplazamiento(emprendedor.getDesplazamiento());
-        empresarioDb.setTelefono(emprendedor.getTelefono());
-        empresarioDb.setEmail(emprendedor.getEmail());
-        empresarioDb.setFechaNacimiento(emprendedor.getFechaNacimiento());
-        empresarioDb.setMunicipio(emprendedor.getMunicipio());
-        empresarioDb.setDireccion(emprendedor.getDireccion());
-        empresarioDb.setComentario(emprendedor.getComentario());
-        empresarioDb.setActivo(emprendedor.getActivo());
-        empresarioDb.setFormaContratacion1(empresario.getFormaContratacion1());
-        empresarioDb.setFormaContratacion2(empresario.getFormaContratacion2());
-        empresarioDb.setNombreEmpresa(empresario.getNombreEmpresa());
-        empresarioDb.setFechaAlta(empresario.getFechaAlta());
-        empresarioDb.setTipoEmpresa(empresario.getTipoEmpresa());
-        empresarioDb.setEmpleadoTC(empresario.getEmpleadoMT());
-        empresarioDb.setRegistroMercantil(empresario.getRegistroMercantil());
-        empresarioDb.setNumeroRegistroMercantil(empresario.getNumeroRegistroMercantil());
-        empresarioDb.setCiiu(empresario.getCiiu());
+
+        System.out.println(empresario);
+
+            empresarioDb.setNombre(emprendedor.getNombre());
+            empresarioDb.setNombre(emprendedor.getNombre());
+            empresarioDb.setApellido(emprendedor.getApellido());
+            empresarioDb.setDni(emprendedor.getDni());
+            empresarioDb.setGenero(emprendedor.getGenero());
+            empresarioDb.setNivelEstudio(emprendedor.getNivelEstudio());
+            empresarioDb.setEtnia(emprendedor.getEtnia());
+            empresarioDb.setVictima(emprendedor.getVictima());
+            empresarioDb.setDiscapacidad(emprendedor.getDiscapacidad());
+            empresarioDb.setDesplazamiento(emprendedor.getDesplazamiento());
+            empresarioDb.setTelefono(emprendedor.getTelefono());
+            empresarioDb.setEmail(emprendedor.getEmail());
+            empresarioDb.setFechaNacimiento(emprendedor.getFechaNacimiento());
+            empresarioDb.setMunicipio(emprendedor.getMunicipio());
+            empresarioDb.setDireccion(emprendedor.getDireccion());
+            empresarioDb.setComentario(emprendedor.getComentario());
+            empresarioDb.setActivo(emprendedor.getActivo());
+            empresarioDb.setFormaContratacion1(empresario.getFormaContratacion1());
+            empresarioDb.setFormaContratacion2(empresario.getFormaContratacion2());
+            empresarioDb.setNombreEmpresa(empresario.getNombreEmpresa());
+            empresarioDb.setFechaAlta(empresario.getFechaAlta());
+            empresarioDb.setTipoEmpresa(empresario.getTipoEmpresa());
+            empresarioDb.setEmpleadoTC(empresario.getEmpleadoMT());
+            empresarioDb.setRegistroMercantil(empresario.getRegistroMercantil());
+            empresarioDb.setNumeroRegistroMercantil(empresario.getNumeroRegistroMercantil());
+            empresarioDb.setCiiu(empresario.getCiiu());
+            empresarioDb.setEmpleadoMT(empresario.getEmpleadoMT());
+            empresarioDb.setId(emprendedor.getId());
+            empresarioDb.setTipo("empresario");
+
+            emprendedorRepository.deleteById(emprendedor.getId());
+
+            return ResponseEntity.status(HttpStatus.SC_CREATED).body(clienteService.save(empresarioDb));
+
+    }
 
 
-        empresarioDb.setEmpleadoMT(empresario.getEmpleadoMT());
-        return ResponseEntity.status(HttpStatus.SC_CREATED).body(clienteService.save(empresarioDb));
+    @PutMapping("/convertirEmpresario/{id}")
+    public ResponseEntity<?> convertirAEmprendedor(@PathVariable Long id, @RequestBody Emprendedor emprendedor){
+        Empresario empresario = (Empresario) clienteService.findById(id).get();
+        Emprendedor emprendedorDb = new Emprendedor();
+
+
+
+
+        emprendedorDb.setNombre(empresario.getNombre());
+        emprendedorDb.setApellido(empresario.getApellido());
+        emprendedorDb.setDni(empresario.getDni());
+        emprendedorDb.setGenero(empresario.getGenero());
+        emprendedorDb.setNivelEstudio(empresario.getNivelEstudio());
+        emprendedorDb.setEtnia(empresario.getEtnia());
+        emprendedorDb.setVictima(empresario.getVictima());
+        emprendedorDb.setDiscapacidad(empresario.getDiscapacidad());
+        emprendedorDb.setDesplazamiento(empresario.getDesplazamiento());
+        emprendedorDb.setTelefono(empresario.getTelefono());
+        emprendedorDb.setEmail(empresario.getEmail());
+        emprendedorDb.setFechaNacimiento(empresario.getFechaNacimiento());
+        emprendedorDb.setMunicipio(empresario.getMunicipio());
+        emprendedorDb.setDireccion(empresario.getDireccion());
+        emprendedorDb.setComentario(empresario.getComentario());
+        emprendedorDb.setActivo(empresario.getActivo());
+        emprendedorDb.setIdeaNegocio(emprendedor.getIdeaNegocio());
+        emprendedorDb.setProducto(emprendedor.getProducto());
+        emprendedorDb.setTipo("emprendedor");
+
+        emprendedorDb.setId(empresario.getId());
+
+        empresarioRepository.deleteById(empresario.getId());
+
+        return ResponseEntity.status(HttpStatus.SC_CREATED).body(clienteService.save(emprendedorDb));
+
     }
 
 
