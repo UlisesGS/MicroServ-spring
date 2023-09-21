@@ -61,42 +61,6 @@ public class ClienteController {
         return ResponseEntity.notFound().build();
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<?>update(@Valid @RequestBody Cliente cliente, BindingResult result, @PathVariable Long id){
-        Optional<Cliente>optionalCliente = clienteService.findById(id);
-        Cliente clienteDb=null;
-
-        if (optionalCliente.isPresent()){
-            clienteDb = optionalCliente.get();
-
-            Optional<Usuario>optionalUsuario = clienteService.findByIdUsuario(clienteDb.getUsuario());
-
-            if (optionalUsuario.isPresent()){
-                clienteDb.setNombre(cliente.getNombre());
-                clienteDb.setApellido(cliente.getApellido());
-                clienteDb.setDni(cliente.getDni());
-                clienteDb.setGenero(cliente.getGenero());
-                clienteDb.setNivelEstudio(cliente.getNivelEstudio());
-                clienteDb.setEtnia(cliente.getEtnia());
-                clienteDb.setVictima(cliente.getVictima());
-                clienteDb.setDiscapacidad(cliente.getDiscapacidad());
-                clienteDb.setDesplazamiento(cliente.getDesplazamiento());
-                clienteDb.setTelefono(cliente.getTelefono());
-                clienteDb.setEmail(cliente.getEmail());
-                clienteDb.setFechaNacimiento(cliente.getFechaNacimiento());
-                clienteDb.setMunicipio(cliente.getMunicipio());
-                clienteDb.setDireccion(cliente.getDireccion());
-                clienteDb.setComentario(cliente.getComentario());
-                clienteDb.setActivo(cliente.getActivo());
-                
-                
-                
-                return ResponseEntity.status(org.apache.http.HttpStatus.SC_CREATED).body(clienteService.save(clienteDb));
-            }
-            return  ResponseEntity.notFound().build();
-        }
-        return  ResponseEntity.notFound().build();
-    }
 
     @PutMapping("/convertirEmprendedor/{id}")
     public ResponseEntity<?> convertirAEmpresario(@PathVariable Long id, @RequestBody Empresario empresario){
@@ -177,6 +141,9 @@ public class ClienteController {
         return ResponseEntity.status(HttpStatus.SC_CREATED).body(clienteService.save(emprendedorDb));
 
     }
+
+
+
 
 
 
