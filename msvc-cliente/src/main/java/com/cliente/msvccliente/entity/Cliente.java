@@ -73,4 +73,6 @@ public class Cliente {
     private String tipo;
 
     private Long usuario;
+
+
 }
