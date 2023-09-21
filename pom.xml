@@ -37,6 +37,7 @@
        <module>gateway</module>
        <module>msvc-usuario</module>
        <module>msvc-cliente</module>
+      <module>msvc-proceso</module>
    </modules>
 
 </project>

@@ -96,7 +96,7 @@ public class ClienteController {
             empresarioDb.setNumeroRegistroMercantil(empresario.getNumeroRegistroMercantil());
             empresarioDb.setCiiu(empresario.getCiiu());
             empresarioDb.setEmpleadoMT(empresario.getEmpleadoMT());
-            empresarioDb.setId(emprendedor.getId());
+           
             empresarioDb.setTipo("empresario");
 
             emprendedorRepository.deleteById(emprendedor.getId());
@@ -110,10 +110,7 @@ public class ClienteController {
     public ResponseEntity<?> convertirAEmprendedor(@PathVariable Long id, @RequestBody Emprendedor emprendedor){
         Empresario empresario = (Empresario) clienteService.findById(id).get();
         Emprendedor emprendedorDb = new Emprendedor();
-
-
-
-
+        
         emprendedorDb.setNombre(empresario.getNombre());
         emprendedorDb.setApellido(empresario.getApellido());
         emprendedorDb.setDni(empresario.getDni());
@@ -134,19 +131,13 @@ public class ClienteController {
         emprendedorDb.setProducto(emprendedor.getProducto());
         emprendedorDb.setTipo("emprendedor");
 
-        emprendedorDb.setId(empresario.getId());
+        
 
         empresarioRepository.deleteById(empresario.getId());
 
         return ResponseEntity.status(HttpStatus.SC_CREATED).body(clienteService.save(emprendedorDb));
 
     }
-
-
-
-
-
-
     @PostMapping("/emprendedor")
     public ResponseEntity<?> saveEmprendedor(@Valid @RequestBody Emprendedor emprendedor, BindingResult result){
 
@@ -166,6 +157,75 @@ public class ClienteController {
         }
 
         return ResponseEntity.status(HttpStatus.SC_CREATED).body(empresarioRepository.save(empresario));
+    }
+    
+    @PutMapping("/modEmprendedor/{id}")
+    public ResponseEntity<?> modificarEmprendedor(@PathVariable Long id, @RequestBody Emprendedor emprendedor){
+        
+        Emprendedor emprendedorDb = emprendedorRepository.findById(id).get();
+        
+        emprendedorDb.setNombre(emprendedor.getNombre());
+        emprendedorDb.setApellido(emprendedor.getApellido());
+        emprendedorDb.setDni(emprendedor.getDni());
+        emprendedorDb.setGenero(emprendedor.getGenero());
+        emprendedorDb.setNivelEstudio(emprendedor.getNivelEstudio());
+        emprendedorDb.setEtnia(emprendedor.getEtnia());
+        emprendedorDb.setVictima(emprendedor.getVictima());
+        emprendedorDb.setDiscapacidad(emprendedor.getDiscapacidad());
+        emprendedorDb.setDesplazamiento(emprendedor.getDesplazamiento());
+        emprendedorDb.setTelefono(emprendedor.getTelefono());
+        emprendedorDb.setEmail(emprendedor.getEmail());
+        emprendedorDb.setFechaNacimiento(emprendedor.getFechaNacimiento());
+        emprendedorDb.setMunicipio(emprendedor.getMunicipio());
+        emprendedorDb.setDireccion(emprendedor.getDireccion());
+        emprendedorDb.setComentario(emprendedor.getComentario());
+        emprendedorDb.setActivo(emprendedor.getActivo());
+        emprendedorDb.setIdeaNegocio(emprendedor.getIdeaNegocio());
+        emprendedorDb.setProducto(emprendedor.getProducto());
+        
+        return ResponseEntity.status(HttpStatus.SC_CREATED).body(clienteService.save(emprendedorDb));
+
+    }
+    
+    @PutMapping("/modEmpresario/{id}")
+    public ResponseEntity<?> modificarAEmpresario(@PathVariable Long id, @RequestBody Empresario empresario){
+        
+        Empresario empresarioDb = empresarioRepository.findById(id).get();
+
+
+            empresarioDb.setNombre(empresario.getNombre());
+            empresarioDb.setNombre(empresario.getNombre());
+            empresarioDb.setApellido(empresario.getApellido());
+            empresarioDb.setDni(empresario.getDni());
+            empresarioDb.setGenero(empresario.getGenero());
+            empresarioDb.setNivelEstudio(empresario.getNivelEstudio());
+            empresarioDb.setEtnia(empresario.getEtnia());
+            empresarioDb.setVictima(empresario.getVictima());
+            empresarioDb.setDiscapacidad(empresario.getDiscapacidad());
+            empresarioDb.setDesplazamiento(empresario.getDesplazamiento());
+            empresarioDb.setTelefono(empresario.getTelefono());
+            empresarioDb.setEmail(empresario.getEmail());
+            empresarioDb.setFechaNacimiento(empresario.getFechaNacimiento());
+            empresarioDb.setMunicipio(empresario.getMunicipio());
+            empresarioDb.setDireccion(empresario.getDireccion());
+            empresarioDb.setComentario(empresario.getComentario());
+            empresarioDb.setActivo(empresario.getActivo());
+            empresarioDb.setFormaContratacion1(empresario.getFormaContratacion1());
+            empresarioDb.setFormaContratacion2(empresario.getFormaContratacion2());
+            empresarioDb.setNombreEmpresa(empresario.getNombreEmpresa());
+            empresarioDb.setFechaAlta(empresario.getFechaAlta());
+            empresarioDb.setTipoEmpresa(empresario.getTipoEmpresa());
+            empresarioDb.setEmpleadoTC(empresario.getEmpleadoMT());
+            empresarioDb.setRegistroMercantil(empresario.getRegistroMercantil());
+            empresarioDb.setNumeroRegistroMercantil(empresario.getNumeroRegistroMercantil());
+            empresarioDb.setCiiu(empresario.getCiiu());
+            empresarioDb.setEmpleadoMT(empresario.getEmpleadoMT());
+           
+           
+
+
+            return ResponseEntity.status(HttpStatus.SC_CREATED).body(clienteService.save(empresarioDb));
+
     }
 
 
