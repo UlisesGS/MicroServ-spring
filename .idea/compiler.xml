@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="msvc-cliente" />
+        <module name="msvc-proceso" />
         <module name="eureka" />
         <module name="gateway" />
         <module name="msvc-usuario" />
@@ -21,6 +22,7 @@
       <module name="msv-crm" options="-parameters" />
       <module name="msvc-cliente" options="-parameters" />
       <module name="msvc-crm" options="-parameters" />
+      <module name="msvc-proceso" options="-parameters" />
       <module name="msvc-usuario" options="-parameters" />
     </option>
   </component>
