@@ -15,6 +15,7 @@ public class Proceso {
 
     private String id;
     private Cliente cliente;
+    private Long idCliente;
    private ProcesoEmprendedor procesoEmprendedor;
    private ProcesoEmpresario procesoEmpresario;
 }

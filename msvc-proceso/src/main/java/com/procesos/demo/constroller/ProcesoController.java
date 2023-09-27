@@ -43,6 +43,12 @@ public class ProcesoController {
 
     @PostMapping
     public ResponseEntity<?>save(@RequestBody Proceso proceso){
-        return ResponseEntity.status(HttpStatus.CREATED).body(procesoService.save(proceso));
+        Cliente cliente = clienteService.findById(proceso.getIdCliente());
+        if ( cliente!=null){
+            proceso.setCliente(cliente);
+            return ResponseEntity.status(HttpStatus.CREATED).body(procesoService.save(proceso));
+        }
+        return ResponseEntity.notFound().build();
+
     }
 }
