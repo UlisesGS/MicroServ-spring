@@ -4,14 +4,17 @@ import com.procesos.demo.entity.modelo.Cliente;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
+import org.springframework.data.mongodb.core.mapping.FieldType;
 
 
 @Document(collection = "procesos")
 @Data
 public class Proceso {
-    @Id
-    private Long id;
+    @Field(targetType = FieldType.OBJECT_ID)
+
+    private String id;
     private Cliente cliente;
-    private ProcesoEmprendedor procesoEmprendedor;
-    private ProcesoEmpresario procesoEmpresario;
+   private ProcesoEmprendedor procesoEmprendedor;
+   private ProcesoEmpresario procesoEmpresario;
 }
