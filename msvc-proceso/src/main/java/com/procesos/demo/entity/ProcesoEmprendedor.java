@@ -7,4 +7,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class ProcesoEmprendedor {
     @Id
     private Long id;
+    private String nombre;
+
 }
