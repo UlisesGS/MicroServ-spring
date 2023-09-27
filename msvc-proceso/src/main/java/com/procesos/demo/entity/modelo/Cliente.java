@@ -37,10 +37,8 @@ public class Cliente {
 
     private String email;
 
-
     @JsonFormat(pattern = "dd-MM-yyyy HH:mm")
     private Timestamp fechaNacimiento;
-
 
     private Municipio municipio;
 
