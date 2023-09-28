@@ -1,9 +1,11 @@
-package com.procesos.demo.constroller;
+package com.procesos.demo.controller;
 
 import com.procesos.demo.entity.Proceso;
+import com.procesos.demo.entity.ProcesoEmprendedor;
 import com.procesos.demo.entity.modelo.Cliente;
 import com.procesos.demo.entity.modelo.ClienteService;
 import com.procesos.demo.service.IProcesoService;
+import com.procesos.demo.service.emprendedor.ProcesoEmprendedorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +18,10 @@ import java.util.Optional;
 public class ProcesoController {
     @Autowired
     private IProcesoService procesoService;
+
+    @Autowired
+    private ProcesoEmprendedorService procesoEmprendedorService;
+
     @Autowired
     private ClienteService clienteService;
     @GetMapping("")
@@ -23,7 +29,7 @@ public class ProcesoController {
         return ResponseEntity.ok().body(procesoService.findAll());
     }
     @GetMapping("/{id}")
-    public ResponseEntity<?>findById(@PathVariable String id){
+    public ResponseEntity<?>findById(@PathVariable Long id){
         Optional<Proceso> procesoOptional = procesoService.findById(id);
         if (procesoOptional.isPresent()){
             return ResponseEntity.ok().body(procesoOptional.get());
@@ -45,10 +51,25 @@ public class ProcesoController {
     public ResponseEntity<?>save(@RequestBody Proceso proceso){
         Cliente cliente = clienteService.findById(proceso.getIdCliente());
         if ( cliente!=null){
-            proceso.setCliente(cliente);
-            return ResponseEntity.status(HttpStatus.CREATED).body(procesoService.save(proceso));
+            System.out.println("1 "+proceso);
+            if (cliente.getTipo().equals("emprendedor")){
+                System.out.println(proceso);
+                proceso.setCliente(cliente);
+                procesoEmprendedorService.saveAutoEvaluacion(proceso.getProcesoEmprendedor().getAutoEvaluacion());
+                procesoEmprendedorService.save(proceso.getProcesoEmprendedor());
+                System.out.println(proceso);
+                return ResponseEntity.status(HttpStatus.CREATED).body(procesoService.save(proceso));
+            }//aca va lo de empresario
+            /*else{
+                proceso.setCliente(cliente);
+                procesoEmprendedorService.saveAutoEvaluacion(proceso.getProcesoEmprendedor().getAutoEvaluacion());
+                procesoEmprendedorService.save(proceso.getProcesoEmprendedor());
+                return ResponseEntity.status(HttpStatus.CREATED).body(procesoService.save(proceso));
+            }*/
+
         }
         return ResponseEntity.notFound().build();
 
     }
+
 }
