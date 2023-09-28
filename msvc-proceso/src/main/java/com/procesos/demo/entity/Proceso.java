@@ -13,7 +13,7 @@ import org.springframework.data.mongodb.core.mapping.FieldType;
 public class Proceso {
     @Field(targetType = FieldType.OBJECT_ID)
 
-    private String id;
+    private Long id;
     private Cliente cliente;
     private Long idCliente;
    private ProcesoEmprendedor procesoEmprendedor;

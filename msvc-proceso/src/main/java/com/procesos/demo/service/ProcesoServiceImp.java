@@ -23,7 +23,7 @@ public class ProcesoServiceImp implements IProcesoService {
     }
 
     @Override
-    public Optional<Proceso> findById(String id) {
+    public Optional<Proceso> findById(Long id) {
         return procesoRepositorio.findById(id);
     }
 
@@ -33,7 +33,7 @@ public class ProcesoServiceImp implements IProcesoService {
     }
 
     @Override
-    public void deleteById(String id) {
+    public void deleteById(Long id) {
         procesoRepositorio.deleteById(id);
     }
 
