@@ -19,6 +19,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="eureka" options="-parameters" />
       <module name="gateway" options="-parameters" />
+      <module name="microServiciosCrm-back" options="-parameters" />
       <module name="msv-crm" options="-parameters" />
       <module name="msvc-cliente" options="-parameters" />
       <module name="msvc-crm" options="-parameters" />
