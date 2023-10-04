@@ -6,6 +6,7 @@ import com.cliente.msvccliente.entity.Emprendedor;
 import com.cliente.msvccliente.entity.Empresario;
 import com.cliente.msvccliente.repository.EmprendedorRepository;
 import com.cliente.msvccliente.repository.EmpresarioRepository;
+import com.cliente.msvccliente.repository.MunicipioRepositorio;
 import com.cliente.msvccliente.service.ClienteService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.validation.Valid;
@@ -32,6 +33,8 @@ public class ClienteController {
 
     @Autowired
     private EmpresarioRepository empresarioRepository;
+    @Autowired
+    private MunicipioRepositorio municipioRepositorio;
 
     private ResponseEntity<?>validar (BindingResult result){
         Map<String, Object>errores= new HashMap<>();
@@ -41,7 +44,10 @@ public class ClienteController {
         });
         return ResponseEntity.badRequest().body(errores);
     }
-
+@GetMapping("/municipio")
+public ResponseEntity<?>municipio(){
+        return ResponseEntity.ok().body(municipioRepositorio.findAll());
+}
     @GetMapping
     public ResponseEntity<?> findAll(){
         return ResponseEntity.ok().body(clienteService.findAll());
