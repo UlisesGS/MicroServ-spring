@@ -15,7 +15,7 @@ public class AutoEvaluacion {
     @Field(targetType = FieldType.OBJECT_ID)
     private Long id;
 
-    @Field("Evaluacion")
+    @Field("evaluacion")
     private List<Evaluacion> evaluacion;
 
     private Integer puntuacion;

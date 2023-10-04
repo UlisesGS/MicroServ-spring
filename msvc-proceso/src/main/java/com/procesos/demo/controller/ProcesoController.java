@@ -6,6 +6,7 @@ import com.procesos.demo.entity.modelo.Cliente;
 import com.procesos.demo.entity.modelo.ClienteService;
 import com.procesos.demo.service.IProcesoService;
 import com.procesos.demo.service.emprendedor.ProcesoEmprendedorService;
+import com.procesos.demo.service.empresario.ProcesoEmpresarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,9 @@ public class ProcesoController {
 
     @Autowired
     private ProcesoEmprendedorService procesoEmprendedorService;
+
+    @Autowired
+    private ProcesoEmpresarioService procesoEmpresarioService;
 
     @Autowired
     private ClienteService clienteService;
@@ -51,21 +55,21 @@ public class ProcesoController {
     public ResponseEntity<?>save(@RequestBody Proceso proceso){
         Cliente cliente = clienteService.findById(proceso.getIdCliente());
         if ( cliente!=null){
-            System.out.println("1 "+proceso);
+
             if (cliente.getTipo().equals("emprendedor")){
-                System.out.println(proceso);
-                proceso.setCliente(cliente);
-                procesoEmprendedorService.saveAutoEvaluacion(proceso.getProcesoEmprendedor().getAutoEvaluacion());
-                procesoEmprendedorService.save(proceso.getProcesoEmprendedor());
-                System.out.println(proceso);
-                return ResponseEntity.status(HttpStatus.CREATED).body(procesoService.save(proceso));
-            }//aca va lo de empresario
-            /*else{
                 proceso.setCliente(cliente);
                 procesoEmprendedorService.saveAutoEvaluacion(proceso.getProcesoEmprendedor().getAutoEvaluacion());
                 procesoEmprendedorService.save(proceso.getProcesoEmprendedor());
                 return ResponseEntity.status(HttpStatus.CREATED).body(procesoService.save(proceso));
-            }*/
+
+            }else{
+                proceso.setCliente(cliente);
+                procesoEmpresarioService.saveDiagnostico(proceso.getProcesoEmpresario().getDiagnosticoEmpresarial().getDiagnostico());
+                procesoEmpresarioService.saveAnalisisResultados(proceso.getProcesoEmpresario().getDiagnosticoEmpresarial().getAnalisisResultados());
+                procesoEmpresarioService.saveAnalisisEconomico(proceso.getProcesoEmpresario().getDiagnosticoEmpresarial().getAnalisisEconomico());
+                procesoEmpresarioService.saveDiagnosticoEmpresarial(proceso.getProcesoEmpresario().getDiagnosticoEmpresarial());
+                return ResponseEntity.status(HttpStatus.CREATED).body(procesoService.save(proceso));
+            }
 
         }
         return ResponseEntity.notFound().build();
