@@ -13,7 +13,7 @@ import java.util.List;
 public class AutoEvaluacion {
 
     @Field(targetType = FieldType.OBJECT_ID)
-    private Long id;
+    private String id;
 
     @Field("evaluacion")
     private List<Evaluacion> evaluacion;

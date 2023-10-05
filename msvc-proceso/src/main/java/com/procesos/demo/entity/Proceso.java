@@ -16,7 +16,7 @@ import java.sql.Timestamp;
 public class Proceso {
     @Field(targetType = FieldType.OBJECT_ID)
 
-    private Long id;
+    private String id;
     private Cliente cliente;
     private Long idCliente;
 
