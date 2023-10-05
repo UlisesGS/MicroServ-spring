@@ -11,7 +11,7 @@ import org.springframework.data.mongodb.core.mapping.FieldType;
 public class ProcesoEmpresario {
 
     @Field(targetType = FieldType.OBJECT_ID)
-    private Long id;
+    private String id;
 
     private DiagnosticoEmpresarial diagnosticoEmpresarial;
 }

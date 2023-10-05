@@ -11,7 +11,7 @@ import org.springframework.data.mongodb.core.mapping.FieldType;
 @Data
 public class ProcesoEmprendedor {
     @Field(targetType = FieldType.OBJECT_ID)
-    private Long id;
+    private String id;
     private String nombre;
 
     private AutoEvaluacion autoEvaluacion;
