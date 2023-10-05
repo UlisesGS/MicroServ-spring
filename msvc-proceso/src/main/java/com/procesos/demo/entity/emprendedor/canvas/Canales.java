@@ -10,7 +10,7 @@ import org.springframework.data.mongodb.core.mapping.FieldType;
 @Data
 public class Canales {
   @Field(targetType = FieldType.OBJECT_ID)
-  private Long id;
+  private String id;
   private String informacion;
   private String evaluacion;
   private String compra;

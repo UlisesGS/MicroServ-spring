@@ -9,7 +9,7 @@ import org.springframework.data.mongodb.core.mapping.FieldType;
 @Data
 public class Canvas {
     @Field(targetType = FieldType.OBJECT_ID)
-    private Long id;
+    private String id;
     private ActividadClave actividadClave;
     private Canales canales;
     private EstructuraCosto estructuraCosto;

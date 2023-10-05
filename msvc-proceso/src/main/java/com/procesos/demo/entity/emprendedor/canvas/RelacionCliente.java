@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.mapping.FieldType;
 @Document(collection = "relacion_clientes")
 public class RelacionCliente {
     @Field(targetType = FieldType.OBJECT_ID)
-    private Long id;
+    private String id;
     private String captacion;
     private String fidelizacion;
     private String estimuzacion;

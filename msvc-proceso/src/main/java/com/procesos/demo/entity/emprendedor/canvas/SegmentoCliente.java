@@ -9,7 +9,7 @@ import org.springframework.data.mongodb.core.mapping.FieldType;
 @Data
 public class SegmentoCliente {
     @Field(targetType = FieldType.OBJECT_ID)
-    private Long id;
+    private String id;
     private String demograficas;
     private String geografia;
     private String psicograficas;

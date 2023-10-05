@@ -9,7 +9,7 @@ import org.springframework.data.mongodb.core.mapping.FieldType;
 @Data
 public class FlujoDeIngreso {
     @Field(targetType = FieldType.OBJECT_ID)
-    private Long id;
+    private String id;
     private String capitalPropio;
     private String capitalPrestamo;
     private String canalesPago;
