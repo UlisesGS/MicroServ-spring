@@ -10,7 +10,7 @@ import org.springframework.data.mongodb.core.mapping.FieldType;
 public class AnalisisEconomico {
 
     @Field(targetType = FieldType.OBJECT_ID)
-    private Long id;
+    private String id;
 
     private Indicador ventasMes;
 

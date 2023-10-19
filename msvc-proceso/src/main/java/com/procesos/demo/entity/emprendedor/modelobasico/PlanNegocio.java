@@ -16,4 +16,5 @@ public class PlanNegocio {
     private DofaAnalisis dofaAnalisis;
     private InformacionProyecto informacionProyecto;
 
+
 }

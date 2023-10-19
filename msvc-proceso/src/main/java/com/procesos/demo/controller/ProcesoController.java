@@ -68,6 +68,7 @@ public class ProcesoController {
                 procesoEmpresarioService.saveAnalisisResultados(proceso.getProcesoEmpresario().getDiagnosticoEmpresarial().getAnalisisResultados());
                 procesoEmpresarioService.saveAnalisisEconomico(proceso.getProcesoEmpresario().getDiagnosticoEmpresarial().getAnalisisEconomico());
                 procesoEmpresarioService.saveDiagnosticoEmpresarial(proceso.getProcesoEmpresario().getDiagnosticoEmpresarial());
+                procesoEmpresarioService.save(proceso.getProcesoEmpresario());
                 return ResponseEntity.status(HttpStatus.CREATED).body(procesoService.save(proceso));
             }
 

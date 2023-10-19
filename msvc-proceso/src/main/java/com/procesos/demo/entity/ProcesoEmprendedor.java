@@ -1,6 +1,7 @@
 package com.procesos.demo.entity;
 
 import com.procesos.demo.entity.emprendedor.AutoEvaluacion;
+import com.procesos.demo.entity.emprendedor.modelobasico.PlanNegocio;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -11,9 +12,10 @@ import org.springframework.data.mongodb.core.mapping.FieldType;
 @Data
 public class ProcesoEmprendedor {
     @Field(targetType = FieldType.OBJECT_ID)
-    private Long id;
+    private String id;
     private String nombre;
 
     private AutoEvaluacion autoEvaluacion;
+    private PlanNegocio planNegocio;
 
 }
