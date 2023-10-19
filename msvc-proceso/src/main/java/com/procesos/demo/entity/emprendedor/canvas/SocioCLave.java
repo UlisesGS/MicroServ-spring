@@ -9,7 +9,7 @@ import org.springframework.data.mongodb.core.mapping.FieldType;
 @Data
 public class SocioCLave {
     @Field(targetType = FieldType.OBJECT_ID)
-    private Long id;
+    private String id;
     private String proveedores;
     private String entidadesPublicas;
     private String entidadesPrivadas;

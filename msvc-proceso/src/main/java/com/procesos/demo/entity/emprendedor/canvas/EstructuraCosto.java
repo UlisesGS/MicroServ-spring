@@ -11,7 +11,7 @@ import java.util.List;
 @Data
 public class EstructuraCosto {
     @Field(targetType = FieldType.OBJECT_ID)
-    private Long id;
+    private String id;
     private List<ComponenteCosto> costoFIjo;
     private List<ComponenteCosto> costoVariable;
     private Double totalCostoFijo;

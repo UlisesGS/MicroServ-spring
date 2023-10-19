@@ -10,7 +10,7 @@ import org.springframework.data.mongodb.core.mapping.FieldType;
 @Data
 public class RecursoClave {
     @Field(targetType = FieldType.OBJECT_ID)
-    private Long id;
+    private String id;
     private String captacion;
     private String fidelizacion;
 
