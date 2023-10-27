@@ -1,21 +1,15 @@
 package com.cliente.msvccliente.entity;
 
-import com.cliente.msvccliente.MsvcUsuario.Usuario;
+
 import com.cliente.msvccliente.enumeraciones.Etnia;
 import com.cliente.msvccliente.enumeraciones.Genero;
 import com.cliente.msvccliente.enumeraciones.NivelEstudio;
-import com.fasterxml.jackson.annotation.JsonFormat;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
-import org.apache.catalina.User;
-import org.aspectj.weaver.ast.Var;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
-import java.sql.Timestamp;
-import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -52,11 +46,10 @@ public class Cliente {
     @Column(unique = true)
     private String email;
 
-    @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    @Temporal(TemporalType.TIMESTAMP)
-    @CreationTimestamp
-    @JsonFormat(pattern = "dd-MM-yyyy HH:mm")
-    private Timestamp fechaNacimiento;
+
+    @Temporal(TemporalType.DATE)
+
+    private Date fechaNacimiento;
 
     @Enumerated(value = EnumType.STRING)
     @ManyToOne

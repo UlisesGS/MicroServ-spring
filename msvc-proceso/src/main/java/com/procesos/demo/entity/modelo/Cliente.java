@@ -8,6 +8,8 @@ import com.procesos.demo.enumeraciones.NivelEstudio;
 import lombok.Data;
 
 import java.sql.Timestamp;
+import java.util.Date;
+
 @Data
 public class Cliente {
 
@@ -37,8 +39,8 @@ public class Cliente {
 
     private String email;
 
-    @JsonFormat(pattern = "dd-MM-yyyy HH:mm")
-    private Timestamp fechaNacimiento;
+
+    private Date fechaNacimiento;
 
     private Municipio municipio;
 

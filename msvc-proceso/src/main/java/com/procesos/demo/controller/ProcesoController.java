@@ -33,7 +33,7 @@ public class ProcesoController {
         return ResponseEntity.ok().body(procesoService.findAll());
     }
     @GetMapping("/{id}")
-    public ResponseEntity<?>findById(@PathVariable Long id){
+    public ResponseEntity<?>findById(@PathVariable String id){
         Optional<Proceso> procesoOptional = procesoService.findById(id);
         if (procesoOptional.isPresent()){
             return ResponseEntity.ok().body(procesoOptional.get());
