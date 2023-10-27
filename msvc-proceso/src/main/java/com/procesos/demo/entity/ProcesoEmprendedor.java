@@ -1,6 +1,7 @@
 package com.procesos.demo.entity;
 
 import com.procesos.demo.entity.emprendedor.AutoEvaluacion;
+import com.procesos.demo.entity.emprendedor.canvas.Canvas;
 import com.procesos.demo.entity.emprendedor.modelobasico.PlanNegocio;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
@@ -17,5 +18,6 @@ public class ProcesoEmprendedor {
 
     private AutoEvaluacion autoEvaluacion;
     private PlanNegocio planNegocio;
+    private Canvas canvas;
 
 }

@@ -8,9 +8,9 @@ import java.util.Optional;
 
 public interface IProcesoService {
     public List<Proceso>findAll();
-    public Optional<Proceso>findById(Long id);
+    public Optional<Proceso>findById(String id);
     public Proceso save (Proceso proceso);
-    public void deleteById(Long id);
+    public void deleteById(String id);
     // de microservicios cliente
     public Cliente findByIdCliente(Long id);
 }

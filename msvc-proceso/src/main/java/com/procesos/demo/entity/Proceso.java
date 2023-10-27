@@ -9,6 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.data.mongodb.core.mapping.FieldType;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 
 @Document(collection = "procesos")
@@ -22,11 +23,11 @@ public class Proceso {
 
     private String estadoDelProceso;
 
-    @JsonFormat(pattern = "dd-MM-yyyy HH:mm")
-    private Timestamp fechaCreacion;
 
-    @JsonFormat(pattern = "dd-MM-yyyy HH:mm")
-    private Timestamp fechaModificacion;
+    private Date fechaCreacion;
+
+
+    private Date fechaModificacion;
 
     private ProcesoEmprendedor procesoEmprendedor;
 

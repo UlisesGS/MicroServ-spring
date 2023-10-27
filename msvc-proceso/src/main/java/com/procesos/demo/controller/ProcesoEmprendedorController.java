@@ -1,6 +1,7 @@
 package com.procesos.demo.controller;
 
 import com.procesos.demo.entity.Proceso;
+import com.procesos.demo.entity.ProcesoEmprendedor;
 import com.procesos.demo.entity.modelo.Cliente;
 import com.procesos.demo.entity.modelo.ClienteService;
 import com.procesos.demo.service.IProcesoService;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Optional;
 
 @RestController
 @RequestMapping("")
@@ -34,5 +37,21 @@ public class ProcesoEmprendedorController {
         }
         return ResponseEntity.notFound().build();
     }
+    @PostMapping("/actividadClave")
+    public ResponseEntity<?>saveActividadClave(@RequestBody Proceso proceso){
+        Optional<Proceso> procesoOptional = procesoService.findById(proceso.getId());
+        Proceso procesoDb = null;
+        if(procesoOptional.isPresent()){
+            procesoDb = procesoOptional.get();
+
+            procesoDb.getProcesoEmprendedor().getCanvas().setActividadClave(emprendedorService.save(proceso.getProcesoEmprendedor().getCanvas().getActividadClave()));
+           procesoDb.getProcesoEmprendedor().setCanvas(emprendedorService.save(proceso.getProcesoEmprendedor().getCanvas()));
+            procesoDb.setProcesoEmprendedor(emprendedorService.save(proceso.getProcesoEmprendedor()));
+            return ResponseEntity.status(201).body(procesoService.save(procesoDb));
+        }
+       return ResponseEntity.notFound().build();
+    }
+  /*  @PostMapping("/canales")
+    public ResponseEntity<?>saveCanales(@)*/
 
 }
