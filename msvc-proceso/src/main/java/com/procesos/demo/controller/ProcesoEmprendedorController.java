@@ -57,7 +57,10 @@ public class ProcesoEmprendedorController {
        return ResponseEntity.notFound().build();
     }
   /*  @PostMapping("/canales")
-    public ResponseEntity<?>saveCanales(@)*/
+    public ResponseEntity<?>saveCanales(@RequestBody Proceso proceso){
+        Optional<Proceso> procesoOptional  = procesoService.findById(proceso.getId())
+    }*/
+    
 
     @PostMapping("/canales")
     public ResponseEntity<?>saveCanales(@RequestBody Proceso proceso){
@@ -67,10 +70,11 @@ public class ProcesoEmprendedorController {
             procesoDb = procesoOptional.get();
             System.out.println(procesoDb);
 
-
-            procesoDb.getProcesoEmprendedor().setCanvas(emprendedorService.saveCanvas(proceso.getProcesoEmprendedor().getCanvas()));
             procesoDb.getProcesoEmprendedor().getCanvas().setCanales(emprendedorService.saveCanales(proceso.getProcesoEmprendedor().getCanvas().getCanales()));
-            procesoDb.setProcesoEmprendedor(emprendedorService.save(proceso.getProcesoEmprendedor()));
+
+            emprendedorService.saveCanvas(proceso.getProcesoEmprendedor().getCanvas());
+
+         emprendedorService.save(proceso.getProcesoEmprendedor());
 
             return ResponseEntity.status(201).body(procesoService.save(procesoDb));
         }
