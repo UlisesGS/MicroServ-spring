@@ -43,10 +43,11 @@ public class ProcesoEmprendedorController {
         Proceso procesoDb = null;
         if(procesoOptional.isPresent()){
             procesoDb = procesoOptional.get();
+            System.out.println(procesoDb);
 
-            procesoDb.getProcesoEmprendedor().getCanvas().setActividadClave(emprendedorService.save(proceso.getProcesoEmprendedor().getCanvas().getActividadClave()));
            procesoDb.getProcesoEmprendedor().setCanvas(emprendedorService.save(proceso.getProcesoEmprendedor().getCanvas()));
-            procesoDb.setProcesoEmprendedor(emprendedorService.save(proceso.getProcesoEmprendedor()));
+            procesoDb.getProcesoEmprendedor().getCanvas().setActividadClave(emprendedorService.save(proceso.getProcesoEmprendedor().getCanvas().getActividadClave()));
+           procesoDb.setProcesoEmprendedor(emprendedorService.save(proceso.getProcesoEmprendedor()));
             return ResponseEntity.status(201).body(procesoService.save(procesoDb));
         }
        return ResponseEntity.notFound().build();
