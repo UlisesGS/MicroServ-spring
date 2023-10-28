@@ -109,57 +109,57 @@ public class ProcesoEmprendedorServiceImpl implements ProcesoEmprendedorService 
     }
 // modelo canvas
     @Override
-    public ActividadClave save(ActividadClave actividadClave) {
+    public ActividadClave saveActividadClave(ActividadClave actividadClave) {
         return actividadClaveRepositorio.save(actividadClave);
     }
 
     @Override
-    public Canales save(Canales canales) {
+    public Canales saveCanales(Canales canales) {
         return canalesRepositorio.save(canales);
     }
 
     @Override
-    public Canvas save(Canvas canvas) {
+    public Canvas saveCanvas(Canvas canvas) {
         return canvasRepositorio.save(canvas);
     }
 
     @Override
-    public ComponenteCosto save(ComponenteCosto componenteCosto) {
+    public ComponenteCosto saveComponenteCosto(ComponenteCosto componenteCosto) {
         return componenteCostoRepositorio.save(componenteCosto);
     }
 
     @Override
-    public EstructuraCosto save(EstructuraCosto estructuraCosto) {
+    public EstructuraCosto saveEstructuraCosto(EstructuraCosto estructuraCosto) {
         return estructuraCostoRepositorio.save(estructuraCosto);
     }
 
     @Override
-    public FlujoDeIngreso save(FlujoDeIngreso flujoDeIngreso) {
+    public FlujoDeIngreso saveFlujoDeIngreso(FlujoDeIngreso flujoDeIngreso) {
         return flujoDeIngresoRepositorio.save(flujoDeIngreso);
     }
 
     @Override
-    public PropuestaValor save(PropuestaValor propuestaValor) {
+    public PropuestaValor savePropuestaValor(PropuestaValor propuestaValor) {
         return propuestaValorRepositorio.save(propuestaValor);
     }
 
     @Override
-    public RecursoClave save(RecursoClave recursoClave) {
+    public RecursoClave saveRecursoClave(RecursoClave recursoClave) {
         return recursoClaveRepositorio.save(recursoClave);
     }
 
     @Override
-    public RelacionCliente save(RelacionCliente relacionCliente) {
+    public RelacionCliente saveRelacionCliente(RelacionCliente relacionCliente) {
         return relacionClienteRepositorio.save(relacionCliente);
     }
 
     @Override
-    public SegmentoCliente save(SegmentoCliente segmentoCliente) {
+    public SegmentoCliente saveSegmentoCliente(SegmentoCliente segmentoCliente) {
         return segmentoClienteRepositorio.save(segmentoCliente);
     }
 
     @Override
-    public SocioCLave save(SocioCLave socioCLave) {
+    public SocioCLave saveSocioCLave(SocioCLave socioCLave) {
         return socioClaveRepositorio.save(socioCLave);
     }
 }
