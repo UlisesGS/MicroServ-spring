@@ -41,17 +41,17 @@ public interface ProcesoEmprendedorService {
     //Plan negocio
     public PlanNegocio savePlanNegocio(PlanNegocio planNegocio);
     // modelo canvas
-    public ActividadClave save (ActividadClave actividadClave);
-    public Canales save (Canales canales);
-    public Canvas save (Canvas canvas);
-    public ComponenteCosto save (ComponenteCosto componenteCosto);
-    public EstructuraCosto save (EstructuraCosto estructuraCosto);
-    public FlujoDeIngreso save (FlujoDeIngreso flujoDeIngreso);
-    public PropuestaValor save (PropuestaValor propuestaValor);
-    public RecursoClave save (RecursoClave recursoClave);
-    public RelacionCliente save (RelacionCliente relacionCliente);
-    public SegmentoCliente save (SegmentoCliente segmentoCliente);
-    public SocioCLave save (SocioCLave socioCLave);
+    public ActividadClave saveActividadClave(ActividadClave actividadClave);
+    public Canales saveCanales (Canales canales);
+    public Canvas saveCanvas (Canvas canvas);
+    public ComponenteCosto saveComponenteCosto (ComponenteCosto componenteCosto);
+    public EstructuraCosto saveEstructuraCosto (EstructuraCosto estructuraCosto);
+    public FlujoDeIngreso saveFlujoDeIngreso (FlujoDeIngreso flujoDeIngreso);
+    public PropuestaValor savePropuestaValor (PropuestaValor propuestaValor);
+    public RecursoClave saveRecursoClave (RecursoClave recursoClave);
+    public RelacionCliente saveRelacionCliente (RelacionCliente relacionCliente);
+    public SegmentoCliente saveSegmentoCliente (SegmentoCliente segmentoCliente);
+    public SocioCLave saveSocioCLave (SocioCLave socioCLave);
 
 
 

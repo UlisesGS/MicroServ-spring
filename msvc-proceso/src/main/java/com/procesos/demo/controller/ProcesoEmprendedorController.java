@@ -28,7 +28,7 @@ public class ProcesoEmprendedorController {
     private ClienteService clienteService;
 
     @PostMapping("/analisisInternoExterno/guardar")
-    public ResponseEntity<?> save(@RequestBody Proceso proceso){
+    public ResponseEntity<?> savePlanNegocio(@RequestBody Proceso proceso){
         Cliente cliente = clienteService.findById(proceso.getIdCliente());
         if(cliente != null){
             emprendedorService.saveAnalisis(proceso.getProcesoEmprendedor().getPlanNegocio().getAnalisis());
@@ -44,8 +44,8 @@ public class ProcesoEmprendedorController {
         if(procesoOptional.isPresent()){
             procesoDb = procesoOptional.get();
 
-            procesoDb.getProcesoEmprendedor().getCanvas().setActividadClave(emprendedorService.save(proceso.getProcesoEmprendedor().getCanvas().getActividadClave()));
-           procesoDb.getProcesoEmprendedor().setCanvas(emprendedorService.save(proceso.getProcesoEmprendedor().getCanvas()));
+            procesoDb.getProcesoEmprendedor().getCanvas().setActividadClave(emprendedorService.saveActividadClave(proceso.getProcesoEmprendedor().getCanvas().getActividadClave()));
+           procesoDb.getProcesoEmprendedor().setCanvas(emprendedorService.saveCanvas(proceso.getProcesoEmprendedor().getCanvas()));
             procesoDb.setProcesoEmprendedor(emprendedorService.save(proceso.getProcesoEmprendedor()));
             return ResponseEntity.status(201).body(procesoService.save(procesoDb));
         }
