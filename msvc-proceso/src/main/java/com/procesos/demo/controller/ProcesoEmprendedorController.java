@@ -37,6 +37,8 @@ public class ProcesoEmprendedorController {
         }
         return ResponseEntity.notFound().build();
     }
+
+
     @PostMapping("/actividadClave")
     public ResponseEntity<?>saveActividadClave(@RequestBody Proceso proceso){
         Optional<Proceso> procesoOptional = procesoService.findById(proceso.getId());
@@ -60,4 +62,154 @@ public class ProcesoEmprendedorController {
     }*/
     
 
+    @PostMapping("/canales")
+    public ResponseEntity<?>saveCanales(@RequestBody Proceso proceso){
+        Optional<Proceso> procesoOptional = procesoService.findById(proceso.getId());
+        Proceso procesoDb = null;
+        if(procesoOptional.isPresent()){
+            procesoDb = procesoOptional.get();
+            System.out.println(procesoDb);
+
+
+            procesoDb.getProcesoEmprendedor().setCanvas(emprendedorService.saveCanvas(proceso.getProcesoEmprendedor().getCanvas()));
+            procesoDb.getProcesoEmprendedor().getCanvas().setCanales(emprendedorService.saveCanales(proceso.getProcesoEmprendedor().getCanvas().getCanales()));
+            procesoDb.setProcesoEmprendedor(emprendedorService.save(proceso.getProcesoEmprendedor()));
+
+            return ResponseEntity.status(201).body(procesoService.save(procesoDb));
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+
+    @PostMapping("/estructuraCosto")
+    public ResponseEntity<?>saveEstructuraCosto(@RequestBody Proceso proceso){
+        Optional<Proceso> procesoOptional = procesoService.findById(proceso.getId());
+        Proceso procesoDb = null;
+        if(procesoOptional.isPresent()){
+            procesoDb = procesoOptional.get();
+            System.out.println(procesoDb);
+
+
+            procesoDb.getProcesoEmprendedor().setCanvas(emprendedorService.saveCanvas(proceso.getProcesoEmprendedor().getCanvas()));
+            procesoDb.getProcesoEmprendedor().getCanvas().setEstructuraCosto(emprendedorService.saveEstructuraCosto(proceso.getProcesoEmprendedor().getCanvas().getEstructuraCosto()));
+            procesoDb.setProcesoEmprendedor(emprendedorService.save(proceso.getProcesoEmprendedor()));
+
+            return ResponseEntity.status(201).body(procesoService.save(procesoDb));
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+
+    @PostMapping("/flujoDeIngreso")
+    public ResponseEntity<?>saveFlujoDeIngreso(@RequestBody Proceso proceso){
+        Optional<Proceso> procesoOptional = procesoService.findById(proceso.getId());
+        Proceso procesoDb = null;
+        if(procesoOptional.isPresent()){
+            procesoDb = procesoOptional.get();
+            System.out.println(procesoDb);
+
+
+            procesoDb.getProcesoEmprendedor().setCanvas(emprendedorService.saveCanvas(proceso.getProcesoEmprendedor().getCanvas()));
+            procesoDb.getProcesoEmprendedor().getCanvas().setFlujoDeIngreso(emprendedorService.saveFlujoDeIngreso(proceso.getProcesoEmprendedor().getCanvas().getFlujoDeIngreso()));
+            procesoDb.setProcesoEmprendedor(emprendedorService.save(proceso.getProcesoEmprendedor()));
+
+            return ResponseEntity.status(201).body(procesoService.save(procesoDb));
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+
+    @PostMapping("/propuestaValor")
+    public ResponseEntity<?>savePropuestaValor(@RequestBody Proceso proceso){
+        Optional<Proceso> procesoOptional = procesoService.findById(proceso.getId());
+        Proceso procesoDb = null;
+        if(procesoOptional.isPresent()){
+            procesoDb = procesoOptional.get();
+            System.out.println(procesoDb);
+
+
+            procesoDb.getProcesoEmprendedor().setCanvas(emprendedorService.saveCanvas(proceso.getProcesoEmprendedor().getCanvas()));
+            procesoDb.getProcesoEmprendedor().getCanvas().setPropuestaValor(emprendedorService.savePropuestaValor(proceso.getProcesoEmprendedor().getCanvas().getPropuestaValor()));
+            procesoDb.setProcesoEmprendedor(emprendedorService.save(proceso.getProcesoEmprendedor()));
+
+            return ResponseEntity.status(201).body(procesoService.save(procesoDb));
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+
+    @PostMapping("/recursosClave")
+    public ResponseEntity<?>saveRecursosClave(@RequestBody Proceso proceso){
+        Optional<Proceso> procesoOptional = procesoService.findById(proceso.getId());
+        Proceso procesoDb = null;
+        if(procesoOptional.isPresent()){
+            procesoDb = procesoOptional.get();
+            System.out.println(procesoDb);
+
+
+            procesoDb.getProcesoEmprendedor().setCanvas(emprendedorService.saveCanvas(proceso.getProcesoEmprendedor().getCanvas()));
+            procesoDb.getProcesoEmprendedor().getCanvas().setRecursoClave(emprendedorService.saveRecursoClave(proceso.getProcesoEmprendedor().getCanvas().getRecursoClave()));
+            procesoDb.setProcesoEmprendedor(emprendedorService.save(proceso.getProcesoEmprendedor()));
+
+            return ResponseEntity.status(201).body(procesoService.save(procesoDb));
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+
+    @PostMapping("/relacionCliente")
+    public ResponseEntity<?>saveRelacionCliente(@RequestBody Proceso proceso){
+        Optional<Proceso> procesoOptional = procesoService.findById(proceso.getId());
+        Proceso procesoDb = null;
+        if(procesoOptional.isPresent()){
+            procesoDb = procesoOptional.get();
+            System.out.println(procesoDb);
+
+
+            procesoDb.getProcesoEmprendedor().setCanvas(emprendedorService.saveCanvas(proceso.getProcesoEmprendedor().getCanvas()));
+            procesoDb.getProcesoEmprendedor().getCanvas().setRelacionCliente(emprendedorService.saveRelacionCliente(proceso.getProcesoEmprendedor().getCanvas().getRelacionCliente()));
+            procesoDb.setProcesoEmprendedor(emprendedorService.save(proceso.getProcesoEmprendedor()));
+
+            return ResponseEntity.status(201).body(procesoService.save(procesoDb));
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+
+    @PostMapping("/segmentoCliente")
+    public ResponseEntity<?>saveSegmentoCliente(@RequestBody Proceso proceso){
+        Optional<Proceso> procesoOptional = procesoService.findById(proceso.getId());
+        Proceso procesoDb = null;
+        if(procesoOptional.isPresent()){
+            procesoDb = procesoOptional.get();
+            System.out.println(procesoDb);
+
+
+            procesoDb.getProcesoEmprendedor().setCanvas(emprendedorService.saveCanvas(proceso.getProcesoEmprendedor().getCanvas()));
+            procesoDb.getProcesoEmprendedor().getCanvas().setSegmentoCliente(emprendedorService.saveSegmentoCliente(proceso.getProcesoEmprendedor().getCanvas().getSegmentoCliente()));
+            procesoDb.setProcesoEmprendedor(emprendedorService.save(proceso.getProcesoEmprendedor()));
+
+            return ResponseEntity.status(201).body(procesoService.save(procesoDb));
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+
+    @PostMapping("/socioCLave")
+    public ResponseEntity<?>SocioCLave(@RequestBody Proceso proceso){
+        Optional<Proceso> procesoOptional = procesoService.findById(proceso.getId());
+        Proceso procesoDb = null;
+        if(procesoOptional.isPresent()){
+            procesoDb = procesoOptional.get();
+            System.out.println(procesoDb);
+
+
+            procesoDb.getProcesoEmprendedor().setCanvas(emprendedorService.saveCanvas(proceso.getProcesoEmprendedor().getCanvas()));
+            procesoDb.getProcesoEmprendedor().getCanvas().setSocioCLave(emprendedorService.saveSocioCLave(proceso.getProcesoEmprendedor().getCanvas().getSocioCLave()));
+            procesoDb.setProcesoEmprendedor(emprendedorService.save(proceso.getProcesoEmprendedor()));
+
+            return ResponseEntity.status(201).body(procesoService.save(procesoDb));
+        }
+        return ResponseEntity.notFound().build();
+    }
 }
