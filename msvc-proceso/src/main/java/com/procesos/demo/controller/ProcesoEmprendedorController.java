@@ -1,7 +1,7 @@
 package com.procesos.demo.controller;
 
 import com.procesos.demo.entity.Proceso;
-import com.procesos.demo.entity.ProcesoEmprendedor;
+
 import com.procesos.demo.entity.modelo.Cliente;
 import com.procesos.demo.entity.modelo.ClienteService;
 import com.procesos.demo.service.IProcesoService;
@@ -45,31 +45,15 @@ public class ProcesoEmprendedorController {
         Proceso procesoDb = null;
         if(procesoOptional.isPresent()){
             procesoDb = procesoOptional.get();
+            procesoDb.setProcesoEmprendedor(proceso.getProcesoEmprendedor());
+            System.out.println();
             System.out.println(procesoDb);
-
-           if (procesoDb.getProcesoEmprendedor().getCanvas().getActividadClave().getId().isEmpty()){
-               procesoDb.getProcesoEmprendedor().setCanvas(emprendedorService.saveCanvas(proceso.getProcesoEmprendedor().getCanvas()));
-               procesoDb.getProcesoEmprendedor().getCanvas().setActividadClave(emprendedorService.saveActividadClave(proceso.getProcesoEmprendedor().getCanvas().getActividadClave()));
-           }else{
-               procesoDb.getProcesoEmprendedor().getCanvas().getActividadClave().setActividadPricipal(proceso.getProcesoEmprendedor().getCanvas().getActividadClave().getActividadPricipal());
-               procesoDb.getProcesoEmprendedor().getCanvas().getActividadClave().setComunicacionMarketing(proceso.getProcesoEmprendedor().getCanvas().getActividadClave().getComunicacionMarketing());
-               procesoDb.getProcesoEmprendedor().getCanvas().getActividadClave().setPostVenta(proceso.getProcesoEmprendedor().getCanvas().getActividadClave().getPostVenta());
-               procesoDb.getProcesoEmprendedor().getCanvas().getActividadClave().setOtros(proceso.getProcesoEmprendedor().getCanvas().getActividadClave().getOtros());
-               emprendedorService.saveActividadClave(proceso.getProcesoEmprendedor().getCanvas().getActividadClave());
-               emprendedorService.saveCanvas(proceso.getProcesoEmprendedor().getCanvas());
-           }
-
-           procesoDb.setProcesoEmprendedor(emprendedorService.save(proceso.getProcesoEmprendedor()));
-
             return ResponseEntity.status(201).body(procesoService.save(procesoDb));
         }
        return ResponseEntity.notFound().build();
+
     }
-  /*  @PostMapping("/canales")
-    public ResponseEntity<?>saveCanales(@RequestBody Proceso proceso){
-        Optional<Proceso> procesoOptional  = procesoService.findById(proceso.getId())
-    }*/
-    
+
 
     @PostMapping("/canales")
     public ResponseEntity<?>saveCanales(@RequestBody Proceso proceso){
@@ -77,23 +61,7 @@ public class ProcesoEmprendedorController {
         Proceso procesoDb = null;
         if(procesoOptional.isPresent()){
             procesoDb = procesoOptional.get();
-            System.out.println(procesoDb);
 
-            if(procesoDb.getProcesoEmprendedor().getCanvas().getCanales().getId().isEmpty()){
-                procesoDb.getProcesoEmprendedor().getCanvas().setCanales(emprendedorService.saveCanales(proceso.getProcesoEmprendedor().getCanvas().getCanales()));
-
-            }else{
-                procesoDb.getProcesoEmprendedor().getCanvas().getCanales().setInformacion(proceso.getProcesoEmprendedor().getCanvas().getCanales().getInformacion());
-                procesoDb.getProcesoEmprendedor().getCanvas().getCanales().setEvaluacion(proceso.getProcesoEmprendedor().getCanvas().getCanales().getEvaluacion());
-                procesoDb.getProcesoEmprendedor().getCanvas().getCanales().setCompra(proceso.getProcesoEmprendedor().getCanvas().getCanales().getCompra());
-                procesoDb.getProcesoEmprendedor().getCanvas().getCanales().setEntrega(proceso.getProcesoEmprendedor().getCanvas().getCanales().getEntrega());
-                procesoDb.getProcesoEmprendedor().getCanvas().getCanales().setPostVenta(proceso.getProcesoEmprendedor().getCanvas().getCanales().getPostVenta());
-                emprendedorService.saveCanales(procesoDb.getProcesoEmprendedor().getCanvas().getCanales());
-
-            }
-
-            emprendedorService.saveCanvas(proceso.getProcesoEmprendedor().getCanvas());
-            emprendedorService.save(proceso.getProcesoEmprendedor());
             return ResponseEntity.status(201).body(procesoService.save(procesoDb));
         }
         return ResponseEntity.notFound().build();

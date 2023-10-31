@@ -8,12 +8,11 @@ import org.springframework.data.mongodb.core.mapping.FieldType;
 
 import java.util.List;
 
-@Document(collection = "auto_evaluacion")
+
 @Data
 public class AutoEvaluacion {
 
-    @Field(targetType = FieldType.OBJECT_ID)
-    private String id;
+
 
     @Field("evaluacion")
     private List<Evaluacion> evaluacion;

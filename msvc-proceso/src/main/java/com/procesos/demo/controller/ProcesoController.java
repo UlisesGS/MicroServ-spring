@@ -58,8 +58,8 @@ public class ProcesoController {
 
             if (cliente.getTipo().equals("emprendedor")){
                 proceso.setCliente(cliente);
-                procesoEmprendedorService.saveAutoEvaluacion(proceso.getProcesoEmprendedor().getAutoEvaluacion());
-                procesoEmprendedorService.save(proceso.getProcesoEmprendedor());
+               // procesoEmprendedorService.saveAutoEvaluacion(proceso.getProcesoEmprendedor().getAutoEvaluacion());
+              //  procesoEmprendedorService.save(proceso.getProcesoEmprendedor());
                 return ResponseEntity.status(HttpStatus.CREATED).body(procesoService.save(proceso));
 
             }else{
