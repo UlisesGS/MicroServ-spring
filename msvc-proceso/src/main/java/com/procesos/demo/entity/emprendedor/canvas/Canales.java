@@ -8,7 +8,8 @@ import org.springframework.data.mongodb.core.mapping.FieldType;
 
 @Document(collection = "canales")
 @Data
-public class Canales {
+public class
+Canales {
   @Field(targetType = FieldType.OBJECT_ID)
   private String id;
   private String informacion;
