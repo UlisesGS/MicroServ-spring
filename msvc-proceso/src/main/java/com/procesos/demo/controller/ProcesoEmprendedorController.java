@@ -1,7 +1,7 @@
 package com.procesos.demo.controller;
 
 import com.procesos.demo.entity.Proceso;
-import com.procesos.demo.entity.ProcesoEmprendedor;
+
 import com.procesos.demo.entity.modelo.Cliente;
 import com.procesos.demo.entity.modelo.ClienteService;
 import com.procesos.demo.service.IProcesoService;
@@ -42,7 +42,10 @@ public class ProcesoEmprendedorController {
         Proceso procesoDb = null;
         if(procesoOptional.isPresent()){
             procesoDb = procesoOptional.get();
+            procesoDb.setProcesoEmprendedor(proceso.getProcesoEmprendedor());
+            System.out.println();
             System.out.println(procesoDb);
+<<<<<<< HEAD
 
 
            procesoDb.getProcesoEmprendedor().setCanvas(emprendedorService.saveCanvas(proceso.getProcesoEmprendedor().getCanvas()));
@@ -50,11 +53,18 @@ public class ProcesoEmprendedorController {
            procesoDb.setProcesoEmprendedor(emprendedorService.save(proceso.getProcesoEmprendedor()));
 
            return ResponseEntity.status(201).body(procesoService.save(procesoDb));
+=======
+            return ResponseEntity.status(201).body(procesoService.save(procesoDb));
+>>>>>>> 822b725a2266da5fcc1b18d4f052f78e4b05ed51
         }
        return ResponseEntity.notFound().build();
+
     }
 
+<<<<<<< HEAD
     
+=======
+>>>>>>> 822b725a2266da5fcc1b18d4f052f78e4b05ed51
 
     @PostMapping("/canales")
     public ResponseEntity<?>saveCanales(@RequestBody Proceso proceso){
@@ -62,14 +72,16 @@ public class ProcesoEmprendedorController {
         Proceso procesoDb = null;
         if(procesoOptional.isPresent()){
             procesoDb = procesoOptional.get();
-            System.out.println(procesoDb);
 
+<<<<<<< HEAD
                 procesoDb.getProcesoEmprendedor().getCanvas().setCanales(emprendedorService.saveCanales(proceso.getProcesoEmprendedor().getCanvas().getCanales()));
 
 
 
             emprendedorService.saveCanvas(proceso.getProcesoEmprendedor().getCanvas());
             emprendedorService.save(proceso.getProcesoEmprendedor());
+=======
+>>>>>>> 822b725a2266da5fcc1b18d4f052f78e4b05ed51
             return ResponseEntity.status(201).body(procesoService.save(procesoDb));
         }
         return ResponseEntity.notFound().build();

@@ -1,14 +1,10 @@
 package com.procesos.demo.entity;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.procesos.demo.entity.modelo.Cliente;
 import lombok.Data;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.data.mongodb.core.mapping.FieldType;
 
-import java.sql.Timestamp;
 import java.util.Date;
 
 
