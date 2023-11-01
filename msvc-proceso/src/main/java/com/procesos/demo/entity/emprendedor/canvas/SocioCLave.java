@@ -8,8 +8,7 @@ import org.springframework.data.mongodb.core.mapping.FieldType;
 @Document(collection = "socios_claves")
 @Data
 public class SocioCLave {
-    @Field(targetType = FieldType.OBJECT_ID)
-    private String id;
+
     private String proveedores;
     private String entidadesPublicas;
     private String entidadesPrivadas;

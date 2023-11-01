@@ -8,8 +8,7 @@ import org.springframework.data.mongodb.core.mapping.FieldType;
 @Document(collection = "propuesta_valor")
 @Data
 public class PropuestaValor {
-    @Field(targetType = FieldType.OBJECT_ID)
-    private String id;
+
     private String proposicion;
 
 }

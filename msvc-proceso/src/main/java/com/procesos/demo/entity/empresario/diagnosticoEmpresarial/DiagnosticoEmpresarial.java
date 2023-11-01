@@ -9,8 +9,7 @@ import org.springframework.data.mongodb.core.mapping.FieldType;
 @Data
 public class DiagnosticoEmpresarial {
 
-    @Field(targetType = FieldType.OBJECT_ID)
-    private String id;
+
 
     private Diagnostico diagnostico;
 

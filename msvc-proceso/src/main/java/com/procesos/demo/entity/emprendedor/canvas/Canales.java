@@ -11,7 +11,7 @@ import org.springframework.data.mongodb.core.mapping.FieldType;
 public class
 Canales {
 
-  private String id;
+
   private String informacion;
   private String evaluacion;
   private String compra;

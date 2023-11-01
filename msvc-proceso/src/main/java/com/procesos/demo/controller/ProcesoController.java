@@ -55,23 +55,38 @@ public class ProcesoController {
     public ResponseEntity<?>save(@RequestBody Proceso proceso){
         Cliente cliente = clienteService.findById(proceso.getIdCliente());
         if ( cliente!=null){
+            return ResponseEntity.status(HttpStatus.CREATED).body(procesoService.save(proceso));
 
-            if (cliente.getTipo().equals("emprendedor")){
-                proceso.setCliente(cliente);
-               // procesoEmprendedorService.saveAutoEvaluacion(proceso.getProcesoEmprendedor().getAutoEvaluacion());
-              //  procesoEmprendedorService.save(proceso.getProcesoEmprendedor());
-                return ResponseEntity.status(HttpStatus.CREATED).body(procesoService.save(proceso));
+        }
+        return ResponseEntity.notFound().build();
 
-            }else{
-                proceso.setCliente(cliente);
-                procesoEmpresarioService.saveDiagnostico(proceso.getProcesoEmpresario().getDiagnosticoEmpresarial().getDiagnostico());
-                procesoEmpresarioService.saveAnalisisResultados(proceso.getProcesoEmpresario().getDiagnosticoEmpresarial().getAnalisisResultados());
-                procesoEmpresarioService.saveAnalisisEconomico(proceso.getProcesoEmpresario().getDiagnosticoEmpresarial().getAnalisisEconomico());
-                procesoEmpresarioService.saveDiagnosticoEmpresarial(proceso.getProcesoEmpresario().getDiagnosticoEmpresarial());
-                procesoEmpresarioService.save(proceso.getProcesoEmpresario());
-                return ResponseEntity.status(HttpStatus.CREATED).body(procesoService.save(proceso));
-            }
+    }
 
+
+    @PutMapping("/editar/procesoEmprendedor")
+    public ResponseEntity<?>updateProcesoEmprendedor(@RequestBody Proceso proceso){
+        Optional<Proceso> procesoOptional = procesoService.findById(proceso.getId());
+        Proceso procesoDb = null;
+        if(procesoOptional.isPresent()){
+            procesoDb = procesoOptional.get();
+            procesoDb.setProcesoEmprendedor(proceso.getProcesoEmprendedor());
+
+            return ResponseEntity.status(201).body(procesoService.save(procesoDb));
+        }
+        return ResponseEntity.notFound().build();
+
+    }
+
+
+    @PutMapping("/editar/procesoEmpresario")
+    public ResponseEntity<?>updateProcesoEmpresario(@RequestBody Proceso proceso){
+        Optional<Proceso> procesoOptional = procesoService.findById(proceso.getId());
+        Proceso procesoDb = null;
+        if(procesoOptional.isPresent()){
+            procesoDb = procesoOptional.get();
+            procesoDb.setProcesoEmpresario(proceso.getProcesoEmpresario());
+
+            return ResponseEntity.status(201).body(procesoService.save(procesoDb));
         }
         return ResponseEntity.notFound().build();
 

@@ -12,8 +12,7 @@ import java.util.List;
 @Data
 public class Diagnostico {
 
-    @Field(targetType = FieldType.OBJECT_ID)
-    private String id;
+
 
     private List<ConceptosGenerales> conceptosGenerales;
 

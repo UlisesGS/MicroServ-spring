@@ -9,8 +9,7 @@ import org.springframework.data.mongodb.core.mapping.FieldType;
 @Document(collection = "recursos_claves")
 @Data
 public class RecursoClave {
-    @Field(targetType = FieldType.OBJECT_ID)
-    private String id;
+
     private String captacion;
     private String fidelizacion;
 
