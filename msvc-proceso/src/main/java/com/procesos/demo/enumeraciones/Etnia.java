@@ -3,9 +3,9 @@ package com.procesos.demo.enumeraciones;
 public enum Etnia {
 
     ROM,
-    INDIGENAS,
+    INDIGENA,
     AFROCOLOMBIANO,
-    RAIZALES,
+    RAIZALE,
     OTRO,
     NINGUNA
 }

@@ -51,6 +51,23 @@ public class ProcesoController {
 
     }
 
+
+    @GetMapping("/cliente/comprobar/{idCliente}")
+    public ResponseEntity<?>comprobarCliente(@PathVariable Long idCliente){
+
+        Proceso clienteOptional = procesoService.findByCliente(idCliente);
+        System.out.println("holaaaaa");
+        System.out.println(clienteOptional);
+        if (clienteOptional!=null){
+            System.out.println("entro");
+            return ResponseEntity.ok().body(true);
+        }else {
+            return ResponseEntity.status(404).body(false);
+        }
+
+    }
+
+
     @PostMapping
     public ResponseEntity<?>save(@RequestBody Proceso proceso){
         Cliente cliente = clienteService.findById(proceso.getIdCliente());

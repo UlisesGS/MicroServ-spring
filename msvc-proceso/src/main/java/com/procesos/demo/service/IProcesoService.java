@@ -12,5 +12,7 @@ public interface IProcesoService {
     public Proceso save (Proceso proceso);
     public void deleteById(String id);
     // de microservicios cliente
-    public Cliente findByIdCliente(Long id);
+    public Cliente findByClienteId(Long id);
+
+    public Proceso findByCliente(Long idCliente);
 }
