@@ -9,8 +9,6 @@ import org.springframework.data.mongodb.core.mapping.FieldType;
 @Data
 public class AnalisisResultados {
 
-    @Field(targetType = FieldType.OBJECT_ID)
-    private String id;
 
     private String gestionEstrategica;
 

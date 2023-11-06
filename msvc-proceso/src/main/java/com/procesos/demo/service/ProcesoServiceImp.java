@@ -38,7 +38,12 @@ public class ProcesoServiceImp implements IProcesoService {
     }
 
     @Override
-    public Cliente findByIdCliente(Long id) {
+    public Cliente findByClienteId(Long id) {
         return clienteService.findById(id);
+    }
+
+    @Override
+    public Proceso findByCliente(Long idCliente) {
+        return procesoRepositorio.findByIdCliente(idCliente);
     }
 }

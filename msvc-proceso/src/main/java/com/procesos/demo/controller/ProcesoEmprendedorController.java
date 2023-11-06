@@ -8,10 +8,7 @@ import com.procesos.demo.service.IProcesoService;
 import com.procesos.demo.service.emprendedor.ProcesoEmprendedorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
@@ -48,6 +45,7 @@ public class ProcesoEmprendedorController {
             procesoDb.setProcesoEmprendedor(proceso.getProcesoEmprendedor());
             System.out.println();
             System.out.println(procesoDb);
+
             return ResponseEntity.status(201).body(procesoService.save(procesoDb));
         }
        return ResponseEntity.notFound().build();
@@ -67,6 +65,58 @@ public class ProcesoEmprendedorController {
         return ResponseEntity.notFound().build();
     }
 
+
+    @PutMapping("/actividadClave/editar")
+    public ResponseEntity<?>updateActividadClave(@RequestBody Proceso proceso){
+        Optional<Proceso> procesoOptional = procesoService.findById(proceso.getId());
+        Proceso procesoDb = null;
+        if(procesoOptional.isPresent()){
+            procesoDb = procesoOptional.get();
+            System.out.println(procesoDb);
+
+
+            procesoDb.getProcesoEmprendedor().getCanvas().getActividadClave().setActividadPricipal(proceso.getProcesoEmprendedor().getCanvas().getActividadClave().getActividadPricipal());
+            procesoDb.getProcesoEmprendedor().getCanvas().getActividadClave().setComunicacionMarketing(proceso.getProcesoEmprendedor().getCanvas().getActividadClave().getComunicacionMarketing());
+            procesoDb.getProcesoEmprendedor().getCanvas().getActividadClave().setPostVenta(proceso.getProcesoEmprendedor().getCanvas().getActividadClave().getPostVenta());
+            procesoDb.getProcesoEmprendedor().getCanvas().getActividadClave().setOtros(proceso.getProcesoEmprendedor().getCanvas().getActividadClave().getOtros());
+
+            emprendedorService.saveCanvas(procesoDb.getProcesoEmprendedor().getCanvas());
+
+            procesoDb.setProcesoEmprendedor(emprendedorService.save(proceso.getProcesoEmprendedor()));
+
+            return ResponseEntity.status(201).body(procesoService.save(procesoDb));
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+
+
+    @PutMapping("/canales/editar")
+    public ResponseEntity<?>updateCanales(@RequestBody Proceso proceso){
+        Optional<Proceso> procesoOptional = procesoService.findById(proceso.getId());
+        Proceso procesoDb = null;
+        if(procesoOptional.isPresent()){
+            procesoDb = procesoOptional.get();
+            System.out.println(procesoDb);
+
+            procesoDb.getProcesoEmprendedor().getCanvas().getCanales().setInformacion(proceso.getProcesoEmprendedor().getCanvas().getCanales().getInformacion());
+            procesoDb.getProcesoEmprendedor().getCanvas().getCanales().setEvaluacion(proceso.getProcesoEmprendedor().getCanvas().getCanales().getEvaluacion());
+            procesoDb.getProcesoEmprendedor().getCanvas().getCanales().setCompra(proceso.getProcesoEmprendedor().getCanvas().getCanales().getCompra());
+            procesoDb.getProcesoEmprendedor().getCanvas().getCanales().setEntrega(proceso.getProcesoEmprendedor().getCanvas().getCanales().getEntrega());
+            procesoDb.getProcesoEmprendedor().getCanvas().getCanales().setPostVenta(proceso.getProcesoEmprendedor().getCanvas().getCanales().getPostVenta());
+
+
+
+            emprendedorService.saveCanvas(procesoDb.getProcesoEmprendedor().getCanvas());
+            emprendedorService.save(procesoDb.getProcesoEmprendedor());
+            return ResponseEntity.status(201).body(procesoService.save(procesoDb));
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+
+
+////////////////
 
     @PostMapping("/estructuraCosto")
     public ResponseEntity<?>saveEstructuraCosto(@RequestBody Proceso proceso){

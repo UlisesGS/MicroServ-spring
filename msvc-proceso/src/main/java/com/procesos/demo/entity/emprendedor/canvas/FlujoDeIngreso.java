@@ -8,8 +8,7 @@ import org.springframework.data.mongodb.core.mapping.FieldType;
 @Document(collection = "flujo_ingresos")
 @Data
 public class FlujoDeIngreso {
-    @Field(targetType = FieldType.OBJECT_ID)
-    private String id;
+
     private String capitalPropio;
     private String capitalPrestamo;
     private String canalesPago;

@@ -8,8 +8,7 @@ import org.springframework.data.mongodb.core.mapping.FieldType;
 @Document(collection = "componente_costo")
 @Data
 public class ComponenteCosto {
-    @Field(targetType = FieldType.OBJECT_ID)
-    private String id;
+
     private String nombre;
     private double monto;
 }

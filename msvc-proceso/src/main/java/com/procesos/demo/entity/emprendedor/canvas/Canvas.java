@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class Canvas {
 
-    private String id;
+
     private ActividadClave actividadClave;
     private Canales canales;
     private EstructuraCosto estructuraCosto;
