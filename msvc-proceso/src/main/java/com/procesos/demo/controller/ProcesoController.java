@@ -5,8 +5,6 @@ import com.procesos.demo.entity.ProcesoEmprendedor;
 import com.procesos.demo.entity.modelo.Cliente;
 import com.procesos.demo.entity.modelo.ClienteService;
 import com.procesos.demo.service.IProcesoService;
-import com.procesos.demo.service.emprendedor.ProcesoEmprendedorService;
-import com.procesos.demo.service.empresario.ProcesoEmpresarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,11 +18,6 @@ public class ProcesoController {
     @Autowired
     private IProcesoService procesoService;
 
-    @Autowired
-    private ProcesoEmprendedorService procesoEmprendedorService;
-
-    @Autowired
-    private ProcesoEmpresarioService procesoEmpresarioService;
 
     @Autowired
     private ClienteService clienteService;
