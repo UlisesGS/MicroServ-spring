@@ -66,6 +66,7 @@ public class ProcesoController {
     public ResponseEntity<?>save(@RequestBody Proceso proceso){
         Cliente cliente = clienteService.findById(proceso.getIdCliente());
         if ( cliente!=null){
+            proceso.setCliente(cliente);
             return ResponseEntity.status(HttpStatus.CREATED).body(procesoService.save(proceso));
 
         }
