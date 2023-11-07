@@ -62,8 +62,9 @@ public class ProcesoController {
             System.out.println("entro");
             return ResponseEntity.ok().body(true);
         }else {
-            return ResponseEntity.status(404).body(false);
+            return ResponseEntity.ok().body(false);
         }
+
 
     }
 
