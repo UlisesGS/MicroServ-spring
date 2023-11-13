@@ -1,6 +1,7 @@
 package com.cliente.msvccliente.entity;
 
 import com.cliente.msvccliente.enumeraciones.FormaContratacion;
+import com.cliente.msvccliente.enumeraciones.RegimenTributario;
 import com.cliente.msvccliente.enumeraciones.TipoEmpresa;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
@@ -22,6 +23,9 @@ public class Empresario extends Cliente{
     private Date fechaAlta;
     @Enumerated(value = EnumType.STRING)
     private TipoEmpresa tipoEmpresa;
+
+    @Enumerated(value = EnumType.STRING)
+    private RegimenTributario regimenTributario;
 
     private Integer empleadoMT;
 
