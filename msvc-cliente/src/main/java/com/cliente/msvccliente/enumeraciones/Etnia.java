@@ -3,9 +3,8 @@ package com.cliente.msvccliente.enumeraciones;
 public enum Etnia {
 
     ROM,
-    INDIGENAS,
+    INDIGENA,
     AFROCOLOMBIANO,
-    RAIZALES,
     OTRO,
     NINGUNA
 }

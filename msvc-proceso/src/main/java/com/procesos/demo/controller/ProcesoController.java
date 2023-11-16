@@ -64,7 +64,8 @@ public class ProcesoController {
 
     @PostMapping
     public ResponseEntity<?>save(@RequestBody Proceso proceso){
-        Cliente cliente = clienteService.findById(proceso.getIdCliente());
+        System.out.println("entroooo");
+        Cliente cliente = clienteService.findById(proceso.getCliente().getId());
         if ( cliente!=null){
             proceso.setCliente(cliente);
             return ResponseEntity.status(HttpStatus.CREATED).body(procesoService.save(proceso));
