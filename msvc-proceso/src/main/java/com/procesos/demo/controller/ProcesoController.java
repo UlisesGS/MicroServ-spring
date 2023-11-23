@@ -64,9 +64,11 @@ public class ProcesoController {
 
     @PostMapping
     public ResponseEntity<?>save(@RequestBody Proceso proceso){
-        Cliente cliente = clienteService.findById(proceso.getIdCliente());
+        System.out.println("entroooo");
+        Cliente cliente = clienteService.findById(proceso.getCliente().getId());
         if ( cliente!=null){
             proceso.setCliente(cliente);
+            proceso.setIdCliente(cliente.getId());
             return ResponseEntity.status(HttpStatus.CREATED).body(procesoService.save(proceso));
 
         }
@@ -96,6 +98,7 @@ public class ProcesoController {
         Proceso procesoDb = null;
         if(procesoOptional.isPresent()){
             procesoDb = procesoOptional.get();
+            procesoDb.setEstadoDelProceso(proceso.getEstadoDelProceso());
             procesoDb.setProcesoEmpresario(proceso.getProcesoEmpresario());
 
             return ResponseEntity.status(201).body(procesoService.save(procesoDb));

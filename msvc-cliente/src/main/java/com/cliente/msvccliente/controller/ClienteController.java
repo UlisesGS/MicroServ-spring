@@ -151,7 +151,7 @@ public ResponseEntity<?>municipio(){
         if (result.hasErrors()){
             this.validar((result));
         }
-
+        emprendedor.setTipo("emprendedor");
         return ResponseEntity.status(HttpStatus.SC_CREATED).body(emprendedorRepository.save(emprendedor));
     }
 
@@ -162,7 +162,7 @@ public ResponseEntity<?>municipio(){
         if (result.hasErrors()){
             this.validar((result));
         }
-
+        empresario.setTipo("empresario");
         return ResponseEntity.status(HttpStatus.SC_CREATED).body(empresarioRepository.save(empresario));
     }
     
