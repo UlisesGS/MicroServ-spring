@@ -10,9 +10,7 @@ import lombok.Data;
 
 @Data
 public class ProcesoEmprendedor {
-
     private String nombre;
-
     private AutoEvaluacion autoEvaluacion;
     private PlanNegocio planNegocio;
     private Canvas canvas;
