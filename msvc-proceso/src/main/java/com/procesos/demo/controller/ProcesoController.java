@@ -83,6 +83,7 @@ public class ProcesoController {
         Proceso procesoDb = null;
         if(procesoOptional.isPresent()){
             procesoDb = procesoOptional.get();
+            procesoDb.setEstadoDelProceso(proceso.getEstadoDelProceso());
             procesoDb.setProcesoEmprendedor(proceso.getProcesoEmprendedor());
 
             return ResponseEntity.status(201).body(procesoService.save(procesoDb));
