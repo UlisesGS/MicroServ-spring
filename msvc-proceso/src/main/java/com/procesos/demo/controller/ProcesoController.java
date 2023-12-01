@@ -79,6 +79,7 @@ public class ProcesoController {
 
     @PutMapping("/editar/procesoEmprendedor")
     public ResponseEntity<?>updateProcesoEmprendedor(@RequestBody Proceso proceso){
+        System.out.println(proceso);
         Optional<Proceso> procesoOptional = procesoService.findById(proceso.getId());
         Proceso procesoDb = null;
         if(procesoOptional.isPresent()){
