@@ -8,9 +8,11 @@ import lombok.Data;
 @Data
 public class RecursoClave {
 
-    private String captacion;
-    private String fidelizacion;
+    private String Humano;
+    private String fisico;
 
-    private String estimulacion;
+    private String intelectuales;
+    private String tecnologicos;
+    private String otros;
 
 }
