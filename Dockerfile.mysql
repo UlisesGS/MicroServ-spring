@@ -1,0 +1,9 @@
+# Usa la imagen oficial de MySQL 8
+FROM mysql:8
+
+# Configuración de la base de datos, usuario y contraseña
+ENV MYSQL_DATABASE=db_usuario
+ENV
+
+# Puerto en el que MySQL estará escuchando
+EXPOSE 3306
