@@ -1,44 +1,72 @@
 version: '3'
 
 services:
-  msvc-mysql:
-    build:
-      context: .
-      dockerfile: Dockerfile.mysql
-    ports:
-      - "3307:3306"
-    environment:
-      MYSQL_DATABASE: db_usuario
-      MYSQL_ROOT_PASSWORD: root
-    networks:
-      - cmr
-    restart: always
-
-  msvc-usuarios:
-    build:
-      context: ./msvc-usuario
-      dockerfile: DockerFile
-    ports:
-      - "8080:8080"
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://msvc-mysql:3306/db_usuario
-      SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: root
-      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://msvc-eureka:8761/eureka
-    networks:
-      - cmr
-    restart: always
-
   msvc-eureka:
-    build:
-      context: ./eureka
-      dockerfile: Dockerfile
+    image: tu-imagen-eureka-server
     ports:
       - "8761:8761"
     networks:
       - cmr
-    restart: always
+
+  msvc-gateway:
+    image: tu-imagen-gateway-service
+    ports:
+      - "8090:8090"
+    networks:
+      - cmr
+    depends_on:
+      - msvc-eureka
+
+  msvc-usuario:
+    image: tu-imagen-user-service
+    networks:
+      - cmr
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://msvc-mysql:3306/db_usuario
+    depends_on:
+      - msvc-eureka
+      - msvc-mysql
+
+  msvc-cliente:
+    image: tu-imagen-client-service
+    networks:
+      - cmr
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://msvc-mysql:3306/db_cliente
+    depends_on:
+      - msvc-eureka
+      - msvc-mysql
+
+  msvc-proceso:
+    image: tu-imagen-process-service
+    networks:
+      - cmr
+    environment:
+      SPRING_DATA_MONGODB_URI: mongodb://msvc-mongo:27017/db_proceso
+    depends_on:
+      - msvc-eureka
+      - msvc-mongo
+
+  msvc-mysql:
+    image: mysql
+    command: --init-file=/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "3306:3306"
+    networks:
+      - cmr
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  msvc-mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+    networks:
+      - cmr
 
 networks:
   cmr:
     driver: bridge
+
