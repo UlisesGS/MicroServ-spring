@@ -1,0 +1,13 @@
+# Utiliza la imagen oficial de MongoDB
+FROM mongo
+
+# Opcional: Copia archivos de configuración u otros recursos
+# COPY ./mongod.conf /etc/mongod.conf
+
+# Variables de entorno para la inicialización de la base de datos
+ENV MONGO_INITDB_ROOT_USERNAME=root
+ENV MONGO_INITDB_ROOT_PASSWORD=example
+ENV MONGO_INITDB_DATABASE=db_proceso
+
+# Opcional: Puedes especificar comandos adicionales a ejecutar al iniciar el contenedor
+# CMD ["mongod", "--config", "/etc/mongod.conf"]
