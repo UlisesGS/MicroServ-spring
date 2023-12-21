@@ -1,6 +1,7 @@
- docker run -p 8801:8801 --name msvc-usuario -d --rm --network cmr msvc-usuario
- docker run -p 8761:8761 --name msvc-eureka -d --rm --network cmr  msvc-eureka
+docker run -p 8801:8801 --name msvc-usuario -d --rm --network cmr msvc-usuario
+docker run -p 8761:8761 --name msvc-eureka -d --rm --network cmr  msvc-eureka
 docker build -t msvc-usuario . -f .\msvc-usuario\DockerFile
 docker build -t msvc-eureka . -f .\eureka\DockerFile
 docker run -d -p 3307:3306 --name msvc-mysql --network cmr -e MYSQL_DATABASE=db_usuario -e MYSQL_ROOT_PASSWORD=root mysql
 docker pull mysql:8
+mvn clean package -DskipTests

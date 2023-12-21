@@ -5,10 +5,10 @@ FROM openjdk:17-jdk-alpine
 WORKDIR /app
 
 # Copia el archivo JAR de tu aplicación al contenedor
-COPY msvc-proceso/target/msvc-proceso-0.0.1-SNAPSHOT.jar msvc-proceso.jar
+COPY gateway/target/gateway-0.0.1-SNAPSHOT.jar gateway.jar
 
-# Expone el puerto 8083
-EXPOSE 8083
+# Expone el puerto 8761, que es el puerto predeterminado de Eureka
+EXPOSE 8090
 
 # Comando para ejecutar la aplicación cuando se inicie el contenedor
-CMD ["java", "-jar", "msvc-proceso.jar"]
+CMD ["java", "-jar", "gateway.jar"]
